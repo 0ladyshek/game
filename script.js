@@ -235,10 +235,10 @@ function checkTouch(event) {
 }
 
 function initListenerSingle() {
+    document.addEventListener("touchstart", checkTouch);
     canvas.addEventListener('mousemove', moveMouse);
     document.addEventListener('keydown', checkKeyboard);
-    document.addEventListener("mousedown", checkMouse);
-    document.addEventListener("touchstart", checkTouch);
+    document.addEventListener("mousedown", checkMouse);   
 }
 
 function sleep(milliseconds) {       
