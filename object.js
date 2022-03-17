@@ -22,10 +22,9 @@ var SHIP = {
 
 var BOMB = {
     image: "./images/bomb.png",
-    y: -300,
     directionY: 3,
     sizeX: 40,
-    sizeY: 80,
+    sizeY: 40,
 }
 
 var PACKET = {

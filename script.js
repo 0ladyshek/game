@@ -11,6 +11,7 @@ let stars = [];
 
 function drawFrame() {
     canvasContext.clearRect(0, 0, GAME.width, GAME.height);
+    document.getElementById("title").innerHTML = "SCORE:" + GAME.score
     drawBackground();
     drawStars();
     loadShip(SHIP);
@@ -248,5 +249,6 @@ function sleep(milliseconds) {
     } while (currentDate - date < milliseconds); 
 }  
 
+setInterval(() => GAME.score++, 5000)
 initListenerSingle();
 play()
