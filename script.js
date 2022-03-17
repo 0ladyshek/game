@@ -1,6 +1,7 @@
 var canvas = document.getElementById("canvas");
 var canvasContext = canvas.getContext("2d");
 
+if (window.innerHeight != GAME.height) GAME.height = window.innerHeight
 canvas.width = GAME.width
 canvas.height = GAME.height
 
