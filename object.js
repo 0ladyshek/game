@@ -7,6 +7,7 @@ var GAME = {
     level: 1,
     lives: 5,
     countBomb: 6,
+    ammunation: 30,
 }
 
 var SHIP = {
@@ -45,6 +46,13 @@ var STAR = {
     R:  1.5,
     color: 'white',
     directionY: 2.5,
+}
+
+var AMMUNATION = {
+    R: 2,
+    color: "yellow",
+    x: GAME.width - 75,
+    y: 10
 }
 
 function Bomb() {

@@ -15,6 +15,7 @@ function drawFrame() {
     document.getElementById("title").innerHTML = "SCORE:" + GAME.score
     drawBackground();
     drawStars();
+    drawAmmunation();
     loadShip(SHIP);
     loadPackets(packets);
     loadBombs(bombs);
@@ -62,6 +63,17 @@ function loadLives() {
     for (let live of lives) {
         live.img.src = SETLIVE.image
         live.img.onload = () => {live.load = true}
+    }
+}
+
+function drawAmmunation() {
+    var startX = AMMUNATION.x
+    for (var i = 0; i < GAME.ammunation; i++) {
+        canvasContext.fillStyle = AMMUNATION.color;
+        canvasContext.beginPath();
+        startX += 2;
+        canvasContext.arc(startX, AMMUNATION.y, AMMUNATION.R, 0, 2 * Math.PI);
+        canvasContext.fill();
     }
 }
 
@@ -209,7 +221,8 @@ function checkKeyboard(event) {
     if (event.code == 'ArrowRight') {
         SHIP.directionX = 5
     }
-    if (event.code == 'ArrowUp') {
+    if ((event.code == 'ArrowUp') && (GAME.ammunation > 0)) {
+        GAME.ammunation--;
         packets.push(new Packet());
     }
 }
@@ -218,7 +231,8 @@ function checkMouse(event) {
     if (event.button == 1) {
         GAME.pause = !GAME.pause;
     }
-    if (event.button == 0) {
+    if ((event.button == 0) && (GAME.ammunation > 0)) {
+        GAME.ammunation--;
         packets.push(new Packet())
     }
 }
@@ -251,5 +265,6 @@ function sleep(milliseconds) {
 }  
 
 setInterval(() => GAME.score++, 5000)
+setInterval(() => GAME.ammunation = 30, 15000)
 initListenerSingle();
 play()
