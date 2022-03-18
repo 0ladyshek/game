@@ -8,6 +8,7 @@ let bombs = [];
 let packets = [];
 let lives = [];
 let stars = [];
+var oldTouchX = 0;
 
 function drawFrame() {
     canvasContext.clearRect(0, 0, GAME.width, GAME.height);
@@ -237,20 +238,22 @@ function checkMouse(event) {
 }
 
 function checkTouch(event) {
-    if ((event.changedTouches[0].clientX >= 0) && (event.changedTouches[0].clientX <= GAME.width / 2 - 150)) {
-        SHIP.directionX = -5
-    }
-    if ((event.changedTouches[0].clientX > GAME.width / 2 + 150) && (event.changedTouches[0].clientX <= GAME.width)) {
-        SHIP.directionX = 5
-    } 
-    if((event.changedTouches[0].clientX > GAME.width / 2) && (event.changedTouches[0].clientX <= GAME.width / 2 + 150)) {
+    if (GAME.ammunation > 0) {
         packets.push(new Packet());
+        GAME.ammunation--;
     }
 }
 
+function moveTouch(event) {
+    if (event.changedTouches[0].clientX > oldTouchX) SHIP.directionX = 5
+    if (event.changedTouches[0].clientX < oldTouchX) SHIP.directionX = -5
+    oldTouchX = vent.changedTouches[0].clientX
+}
+
 function initListenerSingle() {
-    document.addEventListener("touchstart", checkTouch);
     canvas.addEventListener('mousemove', moveMouse);
+    document.addEventListener("touchstart", checkTouch);
+    document.addEventListener("touchmove", moveTouch)
     document.addEventListener('keydown', checkKeyboard);
     document.addEventListener("mousedown", checkMouse);   
 }
