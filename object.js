@@ -1,6 +1,6 @@
 var GAME = {
     width: 450,
-    height: window.innerHeight,
+    height: window.innerHeight / 2,
     background: "#252850",
     score: 0,
     pause: false,
