@@ -1,10 +1,12 @@
 const devices = new RegExp('Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini', "i");
 if (devices.test(navigator.userAgent)) {
-    height = window.innerHeight,
-    width = window.innerWidth
+    height = window.innerHeight / 2,
+    width = window.innerWidth / 2,
+    phone = true;
 } else {
     height = 600,
-    width = 400
+    width = 400,
+    phone = false
 }
 
 var GAME = {
@@ -17,6 +19,8 @@ var GAME = {
     lives: 5,
     countBomb: 6,
     ammunation: 30,
+    phone: phone,
+
 }
 
 var SHIP = {

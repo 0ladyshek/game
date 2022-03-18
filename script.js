@@ -180,6 +180,8 @@ function gameOver() {
     GAME.lives = 5;
     bombs.length = 0;
     packets.length = 0;
+    GAME.ammunation = 30;
+    GAME.score = 0;
     GAME.pause = true;
 }
 
@@ -251,11 +253,14 @@ function moveTouch(event) {
 }
 
 function initListenerSingle() {
-    canvas.addEventListener('mousemove', moveMouse);
-    document.addEventListener("touchstart", checkTouch);
-    document.addEventListener("touchmove", moveTouch)
-    document.addEventListener('keydown', checkKeyboard);
-    document.addEventListener("mousedown", checkMouse);   
+    if (GAME.phone) {
+        document.addEventListener("touchstart", checkTouch);
+        document.addEventListener("touchmove", moveTouch);
+    } else {
+        canvas.addEventListener('mousemove', moveMouse);
+        document.addEventListener('keydown', checkKeyboard);
+        document.addEventListener("mousedown", checkMouse);   
+    }
 }
 
 function sleep(milliseconds) {       
