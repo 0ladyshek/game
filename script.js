@@ -247,7 +247,7 @@ function checkTouch(event) {
 function moveTouch(event) {
     if (event.changedTouches[0].clientX > oldTouchX) SHIP.directionX = 5
     if (event.changedTouches[0].clientX < oldTouchX) SHIP.directionX = -5
-    oldTouchX = vent.changedTouches[0].clientX
+    oldTouchX = event.changedTouches[0].clientX
 }
 
 function initListenerSingle() {
