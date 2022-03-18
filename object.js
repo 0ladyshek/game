@@ -1,6 +1,15 @@
+const devices = new RegExp('Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini', "i");
+if (devices.test(navigator.userAgent)) {
+    height = window.height / 2,
+    width = window.width
+} else {
+    height = 600,
+    width = 400
+}
+
 var GAME = {
-    width: 450,
-    height: window.innerHeight / 2,
+    width: width,
+    height: height,
     background: "#252850",
     score: 0,
     pause: false,
