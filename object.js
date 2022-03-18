@@ -1,7 +1,7 @@
 const devices = new RegExp('Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini', "i");
 if (devices.test(navigator.userAgent)) {
-    height = window.height / 2,
-    width = window.width
+    height = window.innerHeight,
+    width = window.innerWidth
 } else {
     height = 600,
     width = 400
