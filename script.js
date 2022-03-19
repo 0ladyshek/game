@@ -210,7 +210,7 @@ function checkKeyboard(event) {
 function checkMouse(event) {
     if (event.button == 1) GAME.pause = !GAME.pause;
     if ((event.button == 0) && (GAME.ammunation > 0)) {
-        if (!GAME.ammunation) GAME.ammunation--;
+        if (!GAME.cheatAmmunationammunation) GAME.ammunation--;
         packets.push(new Packet())
     }
 }
