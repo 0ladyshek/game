@@ -101,9 +101,7 @@ function updatePackets() {
 function checkPackets() {
     for (var i = 0; i <= packets.length - 1; i++) {
         var packet = packets[i];
-        if (0 > packet.y) {
-            packets.splice(i, 1);
-        }
+        if (0 > packet.y) packets.splice(i, 1);
         for (var x = 0; x <= bombs.length - 1; x++) {
             var bomb = bombs[x]
             if ((packet.y <= bomb.y + BOMB.sizeY) && (packet.y >= bomb.y) && (packet.x >= bomb.x) && (packet.x <= bomb.x + BOMB.sizeX)) {
@@ -118,9 +116,7 @@ function checkBomb(ship, game) {
     for (var i = bombs.length; i < GAME.countBomb; i++) bombs.push(new Bomb());
     for (var i = 0; i <= bombs.length - 1; i++) {
         var bomb = bombs[i];
-        if (bomb.y >= GAME.height) {
-            bombs.splice(i, 1);
-        }
+        if (bomb.y >= GAME.height) bombs.splice(i, 1);
         if ((bomb.x >= ship.x - BOMB.sizeX) && (bomb.x <= ship.x + ship.sizeX) && (bomb.y <= ship.y + ship.sizeY) && (bomb.y >= ship.y - ship.sizeY / 2 + BOMB.sizeY / 2)) {
             bombs.splice(i, 1);
             if (!game.cheatLives) game.lives--;
@@ -135,8 +131,8 @@ function updateBomb() {
 function checkLives() {
     for (var i = lives.length; i < GAME.lives; i++) {
         var downLive = lives[lives.length - 1]
-        if (downLive) { lives.push(new Live(downLive.x + 5 + SETLIVE.sizeX)) }
-        if (!downLive) { lives.push(new Live(10)) }
+        if (downLive) lives.push(new Live(downLive.x + 5 + SETLIVE.sizeX))
+        if (!downLive) lives.push(new Live(10))
     }
     if (GAME.lives < lives.length + 1) lives.splice(GAME.lives, lives.length - GAME.lives)
 }
@@ -144,9 +140,7 @@ function checkLives() {
 function checkStars() {
     for (var i = 0; i < stars.length - 1; i++) {
         var star = stars[i]
-        if (star.y >= GAME.height) {
-            stars.splice(i, 1)
-        }
+        if (star.y >= GAME.height) stars.splice(i, 1)
     }
 }
 
