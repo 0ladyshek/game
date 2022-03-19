@@ -222,8 +222,8 @@ function moveTouch(event) {
 
 function initListenerSingle() {
     if (GAME.phone) {
-        document.addEventListener("touchmove", moveTouch);
-        document.addEventListener("touchstart", checkTouch, {passive: true});
+        document.addEventListener("touchmove", moveTouch, { passive: false });
+        document.addEventListener("touchstart", checkTouch);
     } else {
         canvas.addEventListener('mousemove', moveMouse);
         document.addEventListener('keydown', checkKeyboard);
