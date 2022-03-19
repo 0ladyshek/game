@@ -20,7 +20,8 @@ var GAME = {
     countBomb: 6,
     ammunation: 30,
     phone: phone,
-
+    cheatLives: false,
+    cheatAmmunation: false,
 }
 
 var SHIP = {

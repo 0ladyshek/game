@@ -123,7 +123,7 @@ function checkBomb(ship, game) {
         }
         if ((bomb.x >= ship.x - BOMB.sizeX) && (bomb.x <= ship.x + ship.sizeX) && (bomb.y <= ship.y + ship.sizeY) && (bomb.y >= ship.y - ship.sizeY / 2 + BOMB.sizeY / 2)) {
             bombs.splice(i, 1);
-            game.lives--;
+            if (!game.cheatLives) game.lives--;
         }
     }
 }
@@ -196,15 +196,21 @@ function checkKeyboard(event) {
     if (event.code == 'ArrowLeft') SHIP.directionX = -5
     if (event.code == 'ArrowRight') SHIP.directionX = 5
     if ((event.code == 'ArrowUp') && (GAME.ammunation > 0)) {
-        GAME.ammunation--;
+        if (!GAME.cheatAmmunation) GAME.ammunation--;
         packets.push(new Packet());
+    }
+    if ((event.altKey) && (event.ctrlKey)) {
+        if (event.code == 'KeyL') GAME.cheatLives = !GAME.cheatLives
+        if (event.code == 'KeyA') GAME.cheatAmmunation = !GAME.cheatAmmunation
+        if (event.code == 'KeyS') GAME.score = prompt("Enter score:")
+        if (event.code == 'KeyB') bombs.length = 0
     }
 }
 
 function checkMouse(event) {
     if (event.button == 1) GAME.pause = !GAME.pause;
     if ((event.button == 0) && (GAME.ammunation > 0)) {
-        GAME.ammunation--;
+        if (!GAME.ammunation) GAME.ammunation--;
         packets.push(new Packet())
     }
 }
