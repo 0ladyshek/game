@@ -56,7 +56,7 @@ var SETLIVE = {
 }
 
 var STAR = {
-    R:  1.5,
+    R: 1.5,
     color: 'white',
     directionY: 2.5,
 }
@@ -90,5 +90,5 @@ function Live(x) {
 
 function Star() {
     this.x = Math.floor(Math.random() * (GAME.width - 0)) + 50,
-    this.y = Math.floor(Math.random() * (GAME.height - 350)) + 0
+    this.y = Math.floor(Math.random() * (-GAME.height - 150)) + 50
 }

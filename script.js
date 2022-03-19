@@ -42,27 +42,27 @@ function drawStars() {
 
 function loadShip(ship) {
     ship.img.src = ship.image
-    ship.img.onload = () => {ship.load = true}
+    ship.img.onload = () => { ship.load = true }
 }
 
 function loadPackets(packets) {
     for (let packet of packets) {
         packet.img.src = PACKET.image
-        packet.img.onload = () => {packet.load = true}
+        packet.img.onload = () => { packet.load = true }
     }
 }
 
 function loadBombs(bombs) {
     for (let bomb of bombs) {
         bomb.img.src = BOMB.image
-        bomb.img.onload = () => {bomb.load = true}
+        bomb.img.onload = () => { bomb.load = true }
     }
 }
 
 function loadLives() {
     for (let live of lives) {
         live.img.src = SETLIVE.image
-        live.img.onload = () => {live.load = true}
+        live.img.onload = () => { live.load = true }
     }
 }
 
@@ -78,22 +78,10 @@ function drawAmmunation() {
 }
 
 function drawAll() {
-    if (SHIP.load) {canvasContext.drawImage(SHIP.img, SHIP.x, SHIP.y, SHIP.sizeX, SHIP.sizeY)}
-    for (let packet of packets) {
-        if (packet.load) {
-            canvasContext.drawImage(packet.img, packet.x, packet.y, PACKET.sizeX, PACKET.sizeY)
-        }
-    } 
-    for (let bomb of bombs) {
-        if (bomb.load) {
-            canvasContext.drawImage(bomb.img, bomb.x, bomb.y, BOMB.sizeX, BOMB.sizeY)
-        }
-    }
-    for (let live of lives) {
-        if (live.load) {
-            canvasContext.drawImage(live.img, live.x, SETLIVE.y, SETLIVE.sizeX, SETLIVE.sizeY)
-        }
-    }
+    if (SHIP.load) canvasContext.drawImage(SHIP.img, SHIP.x, SHIP.y, SHIP.sizeX, SHIP.sizeY) 
+    for (let packet of packets) {if (packet.load) canvasContext.drawImage(packet.img, packet.x, packet.y, PACKET.sizeX, PACKET.sizeY)}
+    for (let bomb of bombs) {if (bomb.load) canvasContext.drawImage(bomb.img, bomb.x, bomb.y, BOMB.sizeX, BOMB.sizeY)}
+    for (let live of lives) {if (live.load) canvasContext.drawImage(live.img, live.x, SETLIVE.y, SETLIVE.sizeX, SETLIVE.sizeY)}
 }
 
 function updateShip(ship) {
@@ -101,15 +89,11 @@ function updateShip(ship) {
 }
 
 function checkShip(game, ship) {
-    if ((ship.x + ship.sizeX >= game.width) || (ship.x <= 0)) {
-        ship.directionX = -ship.directionX
-    }
+    if ((ship.x + ship.sizeX >= game.width) || (ship.x <= 0)) ship.directionX = -ship.directionX
 }
 
 function updatePackets() {
-    for (let packet of packets) {
-        packet.y -= PACKET.directionY
-    }
+    for (let packet of packets) {packet.y -= PACKET.directionY}
 }
 
 function checkPackets() {
@@ -129,9 +113,7 @@ function checkPackets() {
 }
 
 function checkBomb(ship, game) {
-    for (var i = bombs.length; i < GAME.countBomb; i++) {
-        bombs.push(new Bomb());
-    }
+    for (var i = bombs.length; i < GAME.countBomb; i++) bombs.push(new Bomb());
     for (var i = 0; i <= bombs.length - 1; i++) {
         var bomb = bombs[i];
         if (bomb.y >= GAME.height) {
@@ -145,20 +127,16 @@ function checkBomb(ship, game) {
 }
 
 function updateBomb() {
-    for (let bomb of bombs) {
-        bomb.y += BOMB.directionY
-    }
+    for (let bomb of bombs) bomb.y += BOMB.directionY
 }
 
 function checkLives() {
     for (var i = lives.length; i < GAME.lives; i++) {
         var downLive = lives[lives.length - 1]
-        if (downLive) {lives.push(new Live(downLive.x + 5 + SETLIVE.sizeX))}
-        if (!downLive) {lives.push(new Live(10))}
+        if (downLive) { lives.push(new Live(downLive.x + 5 + SETLIVE.sizeX)) }
+        if (!downLive) { lives.push(new Live(10)) }
     }
-    if(GAME.lives < lives.length + 1) {
-        lives.splice(GAME.lives, lives.length - GAME.lives)
-    }
+    if (GAME.lives < lives.length + 1) lives.splice(GAME.lives, lives.length - GAME.lives)
 }
 
 function checkStars() {
@@ -171,9 +149,7 @@ function checkStars() {
 }
 
 function updateStars() {
-    for (let star of stars) {
-        star.y += STAR.directionY
-    }
+    for (let star of stars) star.y += STAR.directionY
 }
 
 function gameOver() {
@@ -210,19 +186,13 @@ function play() {
 function moveMouse(event) {
     SHIP.x = event.clientX
     SHIP.directionX = 0
-    if (event.clientX >= GAME.width - SHIP.sizeX) {SHIP.x = GAME.width - SHIP.sizeX}
+    if (event.clientX >= GAME.width - SHIP.sizeX) SHIP.x = GAME.width - SHIP.sizeX
 }
 
 function checkKeyboard(event) {
-    if ((event.code == "Escape") || (event.code == "Enter")) {
-        GAME.pause = !GAME.pause
-    }
-    if (event.code == 'ArrowLeft') {
-        SHIP.directionX = -5 
-    }
-    if (event.code == 'ArrowRight') {
-        SHIP.directionX = 5
-    }
+    if ((event.code == "Escape") || (event.code == "Enter")) GAME.pause = !GAME.pause
+    if (event.code == 'ArrowLeft') SHIP.directionX = -5
+    if (event.code == 'ArrowRight') SHIP.directionX = 5
     if ((event.code == 'ArrowUp') && (GAME.ammunation > 0)) {
         GAME.ammunation--;
         packets.push(new Packet());
@@ -230,9 +200,7 @@ function checkKeyboard(event) {
 }
 
 function checkMouse(event) {
-    if (event.button == 1) {
-        GAME.pause = !GAME.pause;
-    }
+    if (event.button == 1) GAME.pause = !GAME.pause;
     if ((event.button == 0) && (GAME.ammunation > 0)) {
         GAME.ammunation--;
         packets.push(new Packet())
@@ -259,17 +227,17 @@ function initListenerSingle() {
     } else {
         canvas.addEventListener('mousemove', moveMouse);
         document.addEventListener('keydown', checkKeyboard);
-        document.addEventListener("mousedown", checkMouse);   
+        document.addEventListener("mousedown", checkMouse);
     }
 }
 
-function sleep(milliseconds) {       
-    const date = Date.now();        
-    let currentDate = null;       
-    do {               
-       currentDate = Date.now();      
-    } while (currentDate - date < milliseconds); 
-}  
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
 
 setInterval(() => GAME.score++, 5000)
 setInterval(() => GAME.ammunation = 30, 15000)
