@@ -90,6 +90,8 @@ function updateShip(ship) {
 
 function checkShip(game, ship) {
     if ((ship.x + ship.sizeX >= game.width) || (ship.x <= 0)) ship.directionX = -ship.directionX
+    if (ship.x + ship.sizeX >= game.width) ship.x = game.width - ship.sizeX
+    if (ship.x <= 0) ship.x = 5
 }
 
 function updatePackets() {
